@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if buyer&.authenticate(params[:password])
       token = jwt_encode(buyer_id: buyer.id)
-      render json: { token: token, isBuyer: true }, status: :ok
+      render json: { token: token, isBuyer: true, buyer_name: buyer.buyer_name }, status: :ok
     elsif broker&.authenticate(params[:password])
       token = jwt_encode(broker_id: broker.id)
       render json: { token: token, isBroker: true }, status: :ok

@@ -26,7 +26,8 @@ class ApplicationController < ActionController::API
       if decoded == "Token not found"
         render json: { error: 'Not Authenticated' }, status: :unauthorized
       else
-    buyer_id = decoded[buyer_id] if decoded.key?(buyer_id)
+        buyer_id = decoded[:buyer_id] if decoded.key?(:buyer_id)
+    
         @current_buyer = Buyer.find_by(id: buyer_id)
       end
     end

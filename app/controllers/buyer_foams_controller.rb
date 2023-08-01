@@ -2,6 +2,7 @@ class BuyerFoamsController < ApplicationController
   before_action :authenticate_buyer, only: [:index, :show, :create, :update]
   before_action :deny_buyer, only: [:show, :update, :destroy]
   before_action :deny_access, only: [:show, :update, :destroy]
+  
   def index
     if current_broker
       buyer_foams = BuyerFoam.all
@@ -28,15 +29,15 @@ class BuyerFoamsController < ApplicationController
 
   def create
     buyer_name = params[:buyer_name]
-    @current_buyer = Buyer.find_by(buyer_name: buyer_name)
-  
-    if @current_buyer.nil?
-      render json: { error: "Buyer not found with name '#{buyer_name}'" }, status: :unprocessable_entity
-      return
-    end
-  
-    buyer_foam = BuyerFoam.new(buyer_foam_params)
-    buyer_foam.buyer_id = @current_buyer.id
+      @current_buyer = Buyer.find_by(buyer_name: buyer_name)
+
+      if @current_buyer.nil?
+        render json: { error: "Buyer not found with name '#{buyer_name}'" }, status: :unprocessable_entity
+        return
+      end
+
+     buyer_foam = BuyerFoam.new(buyer_foam_params)
+     buyer_foam.buyer_id = @current_buyer.id
   
     if buyer_foam.save
       render json: buyer_foam, status: :created

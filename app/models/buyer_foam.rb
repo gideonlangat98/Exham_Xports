@@ -1,3 +1,3 @@
 class BuyerFoam < ApplicationRecord
-    belongs_to :buyer, optional: true
+    belongs_to :buyer
 end
