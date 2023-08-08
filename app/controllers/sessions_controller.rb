@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       render json: { token: token, isBroker: true }, status: :ok
     elsif supplier&.authenticate(params[:password])
       token = jwt_encode(supplier_id: supplier.id)  # Fixed typo: "supplier", not "suplier"
-      render json: { token: token, isSupplier: true }, status: :ok
+      render json: { token: token, isSupplier: true, supplier_name: supplier.supplier_name }, status: :ok
     else
       render json: { errors: 'Invalid Password or email' }, status: :unauthorized
     end

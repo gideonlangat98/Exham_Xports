@@ -7,10 +7,15 @@ Rails.application.routes.draw do
 
   resources :buyers do
     member do 
-        
       get 'buyer_foams', to: 'buyers#buyer_foams'
    end
+  end
+
+  resources :suppliers do
+    member do 
+      get 'supplies', to: 'suppliers#supplies'
    end
+  end
 
   post "/suppliers", to: "suppliers#create"
   post "/buyers", to: "buyers#create"

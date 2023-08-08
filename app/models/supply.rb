@@ -1,6 +1,3 @@
 class Supply < ApplicationRecord
-    belongs_to :supplier, optional: true
-
-    
+    belongs_to :supplier 
 end
- # end

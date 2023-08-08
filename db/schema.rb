@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_222613) do
     t.float "cost"
     t.float "amount"
     t.string "total"
+    t.string "assign_to"
     t.integer "supplier_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

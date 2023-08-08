@@ -1,14 +1,14 @@
 class SuppliersController < ApplicationController
     # before_action :set_supplier, only: [:destroy]
     # before_action :authenticate_staff, only: [:show, :create, :update, :destroy]
-    before_action :deny_access, only: [:destroy, :create, :update, :show]
-  
+    before_action :deny_access, only: [:destroy, :update, :show]
   
     def index
-      supplier = Supplier.all
-      render json: supplier, status: :ok
+      @supplier = Supplier.all
+      Rails.logger.info(@suppliers.inspect)
+      render json: @supplier
     end
-  
+
     def create
       supplier = Supplier.create(supplier_params)
       if supplier.save
@@ -23,6 +23,8 @@ class SuppliersController < ApplicationController
     end
   
     def update
+      Rails.logger.info("Updating supplier with ID: #{params[:id]}")
+      Rails.logger.info("Supplier params: #{supplier_params.inspect}")
       supplier = set_supplier
       if supplier.update(supplier_params)
         render json: supplier
@@ -30,6 +32,7 @@ class SuppliersController < ApplicationController
         render json: { error: supplier.errors.full_messages }, status: :unprocessable_entity
       end
     end
+  
   
     def destroy
       supplier = Supplier.find_by(id: params[:id])
@@ -44,11 +47,11 @@ class SuppliersController < ApplicationController
     private
   
     def set_supplier
-      supplier = Supplier.find[:id]
+      supplier = Supplier.find(params[:id])
     end
   
     def supplier_params
-      params.permit(:supplier_name, :email,  :password, :password_confirmation, :isSupplier, :broker_id )
+      params.permit(:supplier_name, :email,  :password, :password_confirmation )
     end
   
     def deny_access

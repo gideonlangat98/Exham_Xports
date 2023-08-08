@@ -1,5 +1,5 @@
 class BuyerFoamsController < ApplicationController
-  before_action :authenticate_buyer, only: [:index, :show, :create, :update]
+  before_action :authenticate_buyer, only: [:index, :show, :update]
   before_action :deny_buyer, only: [:show, :update, :destroy]
   before_action :deny_access, only: [:show, :update, :destroy]
   

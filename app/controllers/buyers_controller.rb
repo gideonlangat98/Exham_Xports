@@ -24,6 +24,8 @@ class BuyersController < ApplicationController
     end
   
     def update
+      Rails.logger.info("Updating buyer with ID: #{params[:id]}")
+      Rails.logger.info("Buyer params: #{buyer_params.inspect}")
       buyer = set_buyer
       if buyer.update(buyer_params)
         render json: buyer
@@ -33,7 +35,7 @@ class BuyersController < ApplicationController
     end
   
     def destroy
-      buyer = Buyer.find_by(id: params[:id])
+      buyer = set_buyer
       if buyer
         buyer.destroy
         head :no_content
@@ -45,12 +47,12 @@ class BuyersController < ApplicationController
     private
   
     def set_buyer
-      buyer = Buyer.find[:id]
+      buyer = Buyer.find(params[:id])
     end
   
     def buyer_params
-      params.permit(:buyer_name,  :email,  :password, :password_confirmation, :isBuyer, :broker_id)
-    end
+      params.permit(:buyer_name, :email, :password, :password_confirmation)
+    end    
   
     def deny_access
       render_unauthorized unless authenticate_broker

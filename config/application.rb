@@ -1,5 +1,4 @@
 require_relative "boot"
-
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -13,7 +12,7 @@ module Exports
     
     Rails.application.config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'https://supply-app-weld.vercel.app/'
+        origins 'http://localhost:3001'
           # Replace with your frontend origin
         resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
       end
@@ -22,12 +21,12 @@ module Exports
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
+    # in config/environments, which are processed later.    #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Only loads a smaller set of middleware suitable for API only apps.
+    
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.middleware.use ActionDispatch::Cookies

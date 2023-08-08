@@ -12,6 +12,7 @@ class CreateSupplies < ActiveRecord::Migration[7.0]
       t.float :cost
       t.float :amount
       t.string :total
+      t.string :assign_to
       t.integer :supplier_id, null: true, foreign_key: true
 
       t.timestamps
