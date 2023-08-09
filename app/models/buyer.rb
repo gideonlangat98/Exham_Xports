@@ -6,6 +6,6 @@ class Buyer < ApplicationRecord
 
     has_many :buyer_foams
 
-    validates :buyer_name, presence: true
+    # validates :buyer_name, presence: true
     
 end

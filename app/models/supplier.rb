@@ -6,5 +6,5 @@ class Supplier < ApplicationRecord
 
     has_many :supplies
     
-    validates :supplier_name, presence: true
+    # validates :supplier_name, presence: true
 end

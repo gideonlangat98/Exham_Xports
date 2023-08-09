@@ -22,6 +22,11 @@ Rails.application.routes.draw do
   post "/brokers", to: "brokers#create"
   post "/login", to: "sessions#create"
 
+  
+    post "/signup/supplier", to: "suppliers#create"
+    post "/signup/buyer", to: "buyers#create"
+    post "/signup/broker", to: "brokers#create"
+
   delete "/logout", to: "sessions#destroy"
 
   get "/me", to: "suppliers#show"
