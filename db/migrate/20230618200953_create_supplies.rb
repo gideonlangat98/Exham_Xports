@@ -1,6 +1,7 @@
 class CreateSupplies < ActiveRecord::Migration[7.0]
   def change
     create_table :supplies do |t|
+      t.string :supplier_credentials
       t.string :country
       t.string :boxmark
       t.string :type_flower

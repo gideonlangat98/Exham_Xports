@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_222613) do
   end
 
   create_table "supplies", force: :cascade do |t|
+    t.string "supplier_credentials"
     t.string "country"
     t.string "boxmark"
     t.string "type_flower"

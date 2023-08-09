@@ -1,7 +1,7 @@
 class BuyersController < ApplicationController
     # before_action :set_staff, only: [:destroy]
     # before_action :authenticate_staff, only: [:show, :create, :update, :destroy]
-    before_action :deny_access, only: [:destroy, :create, :update, :show]
+    before_action :deny_access, only: [:destroy, :update, :update, :show]
   
   
     def index
@@ -55,7 +55,7 @@ class BuyersController < ApplicationController
     end    
   
     def deny_access
-      render_unauthorized unless authenticate_broker
+      render_unauthorized unless current_broker
     end
   
     def render_unauthorized

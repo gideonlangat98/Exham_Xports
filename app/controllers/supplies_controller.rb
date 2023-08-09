@@ -86,7 +86,7 @@ class SuppliesController < ApplicationController
     private
   
     def supply_params
-      params.require(:supply).permit(:country, :assign_to, :boxmark, :type_flower,:variety, :s1, :quantity, :boxtype, :stems, :cost, :amount, :total)
+      params.permit(:supplier_credentials, :country, :assign_to, :boxmark, :type_flower,:variety, :s1, :quantity, :boxtype, :stems, :cost, :amount, :total)
     end
   
     def deny_supplier
